@@ -16,13 +16,17 @@
   <div id="evil-ball"></div>
   <div id="gold-ball"></div>
   <div id="good"></div>
+  <canvas id="gameCanvas" width="400" height="300" style="border: 1px solid black;"></canvas>
 
 <script>
   window.onload = function () {
+    start();
     const ball = document.getElementById("ball");
     const evilBall = document.getElementById("evil-ball");
     const goldBall = document.getElementById("gold-ball");
     const scoreText = document.getElementById("score");
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
 
     let score = parseInt(localStorage.getItem("ballGameScore"));
     if (isNaN(score)) score = 0;
