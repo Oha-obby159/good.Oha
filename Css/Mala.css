@@ -1,0 +1,81 @@
+body {
+    background-image: url("/img/Malaysia.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: sans-serif;
+    color: rgb(0, 0, 0);
+    margin: 0;
+}
+.bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("bg.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2; /* ค่านี้คือความจาง */
+    z-index: -1; /* ดันไปข้างหลัง */
+}
+.content {
+    position: relative;
+    z-index: 1;
+    padding: 35px;
+    color: #222;
+}
+.Fil{
+    border: solid 2px black;
+    background-color: rgba(8, 8, 212, 0.586) ;
+    padding: 20px;
+    border-radius: 10px;
+}
+.toggle-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.toggle-content.open {
+    max-height: 500px; /* ปรับได้ตามความสูงข้อความ */
+}
+.toggle-header {
+    cursor: pointer;
+    user-select: none;
+}
+h1 {
+    display: inline-block;
+    color: black;
+    background-color: white;
+    width: auto;
+    border: 5px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    transition: .6s;
+}
+h1:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    transform: scale(1.05);
+}
+h3 {
+    display: inline-block;
+    color: black;
+    background-color: white;
+    width: auto;
+    border: 5px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    transition: .6s;
+}
+h3:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    transform: scale(1.05);
+}
+p {
+    border: rgb(0, 0, 0) solid 2px;
+    background-color: white;
+    padding: 4px;
+    border-radius: 10px;
+}

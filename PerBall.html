@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เกมบอล</title>
+
+  <link rel="stylesheet" href="../Css/good.css">
+</head>
+<body>
+  <div style="text-align: center;">
+  <h1 class="goodgame">เกมบอล</h1>
+  </div>
+  <div id="score">แต้มของคุณ: 0</div>
+  <div id="ball"></div>
+  <div id="evil-ball"></div>
+  <div id="gold-ball"></div>
+  <div id="good"></div>
+
+<script>
+  window.onload = function () {
+    const ball = document.getElementById("ball");
+    const evilBall = document.getElementById("evil-ball");
+    const goldBall = document.getElementById("gold-ball");
+    const scoreText = document.getElementById("score");
+
+    let score = parseInt(localStorage.getItem("ballGameScore"));
+    if (isNaN(score)) score = 0;
+    scoreText.textContent = "แต้มของคุณ: " + score;
+
+    function moveBall() {
+      const x = Math.random() * (window.innerWidth - ball.offsetWidth);
+      const y = Math.random() * (window.innerHeight - ball.offsetHeight);
+      ball.style.left = x + "px";
+      ball.style.top = y + "px";
+
+      moveEvilBall(x, y);
+    }
+
+    function moveEvilBall(baseX, baseY) {
+      const offsetX = (Math.random() * 160) - 80;
+      const offsetY = (Math.random() * 160) - 80;
+      const x = Math.min(Math.max(baseX + offsetX, 0), window.innerWidth - evilBall.offsetWidth);
+      const y = Math.min(Math.max(baseY + offsetY, 0), window.innerHeight - evilBall.offsetHeight);
+      evilBall.style.left = x + "px";
+      evilBall.style.top = y + "px";
+    }
+
+    function moveGoldBall() {
+      const x = Math.random() * (window.innerWidth - goldBall.offsetWidth);
+      const y = Math.random() * (window.innerHeight - goldBall.offsetHeight);
+      goldBall.style.left = x + "px";
+      goldBall.style.top = y + "px";
+    }
+
+    ball.addEventListener("click", () => {
+      score++;
+      scoreText.textContent = "แต้มของคุณ: " + score;
+      localStorage.setItem("ballGameScore", score);
+      moveBall();
+    });
+
+    evilBall.addEventListener("click", () => {
+      score -= 2;
+      if (score < 0) score = 0;
+      scoreText.textContent = "แต้มของคุณ: " + score;
+      localStorage.setItem("ballGameScore", score);
+      moveBall();
+    });
+
+    goldBall.addEventListener("click", () => {
+      score += 10;
+      scoreText.textContent = "แต้มของคุณ: " + score;
+      localStorage.setItem("ballGameScore", score);
+      goldBall.style.display = "none"; // หายไปเมื่อโดนคลิก
+    });
+
+    // ⏱ แสดงบอลทองคำทุก 20 วิ และหายไปใน 5 วิ
+    setInterval(() => {
+      moveGoldBall();
+      goldBall.style.display = "block";
+
+      // ความเร็ว 2 เท่า → เคลื่อนไหวเร็วขึ้นทุก 1000ms
+      const goldMoveInterval = setInterval(() => {
+        moveGoldBall();
+      }, 1000);
+
+      // หายไปใน 5 วินาที
+      setTimeout(() => {
+        goldBall.style.display = "none";
+        clearInterval(goldMoveInterval);
+      }, 5000);
+    }, 20000);
+
+    moveBall();
+    setInterval(moveBall, 1000);
+  };
+</script>
+</body>
+</html>
