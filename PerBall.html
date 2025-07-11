@@ -19,8 +19,7 @@
   <div id="good"></div>
 
 <script>
-  window.onload = function () {
-    start();
+  document.addEventListener("DOMContentLoaded", function () {
     const ball = document.getElementById("ball");
     const evilBall = document.getElementById("evil-ball");
     const goldBall = document.getElementById("gold-ball");
@@ -80,13 +79,9 @@
     setInterval(() => {
       moveGoldBall();
       goldBall.style.display = "block";
-
-
       const goldMoveInterval = setInterval(() => {
         moveGoldBall();
       }, 1000);
-
-
       setTimeout(() => {
         goldBall.style.display = "none";
         clearInterval(goldMoveInterval);
@@ -95,7 +90,7 @@
 
     moveBall();
     setInterval(moveBall, 1000);
-  };
+  });
 </script>
 </body>
 </html>
