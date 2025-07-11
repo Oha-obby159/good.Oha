@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../Css/good.css">
 </head>
 <body>
+  <div id="good"></div>
   <div style="text-align: center;">
   <h1 class="goodgame">เกมบอล</h1>
   </div>
@@ -16,7 +17,6 @@
   <div id="evil-ball"></div>
   <div id="gold-ball"></div>
   <div id="good"></div>
-  <canvas id="gameCanvas" width="400" height="300" style="border: 1px solid black;"></canvas>
 
 <script>
   window.onload = function () {
@@ -25,8 +25,6 @@
     const evilBall = document.getElementById("evil-ball");
     const goldBall = document.getElementById("gold-ball");
     const scoreText = document.getElementById("score");
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
 
     let score = parseInt(localStorage.getItem("ballGameScore"));
     if (isNaN(score)) score = 0;
