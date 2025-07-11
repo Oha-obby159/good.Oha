@@ -29,6 +29,8 @@
     if (isNaN(score)) score = 0;
     scoreText.textContent = "แต้มของคุณ: " + score;
 
+    goldBall.style.display = "none";
+
     function moveBall() {
       const x = Math.random() * (window.innerWidth - ball.offsetWidth);
       const y = Math.random() * (window.innerHeight - ball.offsetHeight);
@@ -79,9 +81,11 @@
     setInterval(() => {
       moveGoldBall();
       goldBall.style.display = "block";
+
       const goldMoveInterval = setInterval(() => {
         moveGoldBall();
       }, 1000);
+
       setTimeout(() => {
         goldBall.style.display = "none";
         clearInterval(goldMoveInterval);
