@@ -72,20 +72,19 @@
       score += 10;
       scoreText.textContent = "แต้มของคุณ: " + score;
       localStorage.setItem("ballGameScore", score);
-      goldBall.style.display = "none"; // หายไปเมื่อโดนคลิก
+      goldBall.style.display = "none";
     });
 
-    // ⏱ แสดงบอลทองคำทุก 20 วิ และหายไปใน 5 วิ
     setInterval(() => {
       moveGoldBall();
       goldBall.style.display = "block";
 
-      // ความเร็ว 2 เท่า → เคลื่อนไหวเร็วขึ้นทุก 1000ms
+
       const goldMoveInterval = setInterval(() => {
         moveGoldBall();
       }, 1000);
 
-      // หายไปใน 5 วินาที
+
       setTimeout(() => {
         goldBall.style.display = "none";
         clearInterval(goldMoveInterval);
